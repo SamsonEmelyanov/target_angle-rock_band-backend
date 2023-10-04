@@ -22,7 +22,7 @@ import java.util.List;
 public class ChatController {
 
     @Value("${app.url}")
-    private static final String appUrl = "https://target-angle-rock-band-backend-samntn.amvera.io";
+    private static final String appUrl = "https://targetangle-rockband.ru";
 
     ChatMessageService chatMessageService;
 
