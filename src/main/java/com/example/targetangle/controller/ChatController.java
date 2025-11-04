@@ -1,16 +1,16 @@
 package com.example.targetangle.controller;
 
+import com.example.targetangle.config.AppProperties;
 import com.example.targetangle.model.ChatMessage;
 import com.example.targetangle.service.ChatMessageService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +19,12 @@ import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "*")
+@RequiredArgsConstructor
 public class ChatController {
 
-    @Value("${app.url}")
-    private static final String appUrl = "https://targetangle-rockband.ru";
-
-    ChatMessageService chatMessageService;
-
-    @Autowired
-    public ChatController(ChatMessageService chatMessageService) {
-        this.chatMessageService = chatMessageService;
-    }
+    private final AppProperties appProperties;
+    private final ChatMessageService chatMessageService;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @RequestMapping(value = "/chat_message", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<ChatMessage>> getAllChatMessages() {
@@ -43,21 +38,21 @@ public class ChatController {
     }
 
   @MessageMapping("/chat.sendMessage")
-  @SendTo(appUrl + "/topic/public")
   public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        //System.out.println(chatMessage);
+        //System.out.println(chatMessage)
         chatMessageService.saveChatMessage(chatMessage);
+        messagingTemplate.convertAndSend(appProperties.getUrl() + "/topic/public", chatMessage);
         return chatMessage;
     }
 
   @MessageMapping("/chat.addUser")
-  @SendTo({appUrl + "/topic/public"})
   public ChatMessage addUser(
       @Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         headerAccessor.getSessionAttributes().put("userimage", chatMessage.getSenderImg());
         headerAccessor.getSessionAttributes().put("date", chatMessage.getDate());
+        messagingTemplate.convertAndSend(appProperties.getUrl() + "/topic/public", chatMessage);
         return chatMessage;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.targetangle.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.*;
@@ -8,10 +8,10 @@ import org.springframework.web.socket.config.annotation.*;
 
 @Configuration
 @EnableWebSocketMessageBroker
+@RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Value("${app.url}")
-    String appUrl;
+    private final AppProperties appProperties;
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -20,8 +20,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes(appUrl+"/app");
-        registry.enableSimpleBroker(appUrl+"/topic");   // Enables a simple in-memory bapp
+        registry.setApplicationDestinationPrefixes(appProperties.getUrl() + "/app");
+        registry.enableSimpleBroker(appProperties.getUrl() + "/topic");   // Enables a simple in-memory bapp
 
         //   Use this for enabling a Full featured broker like RabbitMQ
 
