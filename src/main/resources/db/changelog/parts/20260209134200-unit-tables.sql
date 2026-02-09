@@ -1,3 +1,7 @@
+--liquibase formatted sql
+
+--changeset samson_emelyanov:20260209134200-unit-tables.sql
+
 CREATE TABLE if not exists `address_info` (
                                 `id` int NOT NULL AUTO_INCREMENT,
                                 `country` varchar(255) DEFAULT NULL,

@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - includeAll:
+      # Включаются в алфавитном порядке, поэтому наименование в виде даты с временем
+      path: db/changelog/parts/

@@ -36,6 +36,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     generate-ddl: false
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: target_angle
+    enabled: true
   security:
     oauth2:
       client:

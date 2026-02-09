@@ -1,0 +1,8 @@
+--liquibase formatted sql
+
+--changeset samson_emelyanov:20260209134300-fill-tables.sql
+
+INSERT INTO target_angle.product_info (id, available_quantity, delivery_time, image_local_path, imageurl, name, price, publication_date, ratings, seller_id, verification_status, apparel_id, gender_id, price_id, brand_id) VALUES (1, 0, 0, null, 'https://storage.yandexcloud.net/target-angle-stuff/%D0%A4%D1%83%D1%82%D0%B1%D0%BE%D0%BB%D0%BA%D0%B0.png', 'Футболка', 1500, null, 0, 1, false, null, null, null, null);
+INSERT INTO target_angle.product_info (id, available_quantity, delivery_time, image_local_path, imageurl, name, price, publication_date, ratings, seller_id, verification_status, apparel_id, gender_id, price_id, brand_id) VALUES (2, 0, 0, null, 'https://storage.yandexcloud.net/target-angle-stuff/%D0%9A%D1%80%D1%83%D0%B6%D0%BA%D0%B0.png', 'Кружка', 500, null, 0, 1, false, null, null, null, null);
+INSERT INTO target_angle.product_info (id, available_quantity, delivery_time, image_local_path, imageurl, name, price, publication_date, ratings, seller_id, verification_status, apparel_id, gender_id, price_id, brand_id) VALUES (3, 0, 0, null, 'https://storage.yandexcloud.net/target-angle-stuff/%D0%91%D1%80%D0%B0%D1%81%D0%BB%D0%B5%D1%82.png', 'Браслет', 1000, null, 0, 1, false, null, null, null, null);
+INSERT INTO target_angle.product_info (id, available_quantity, delivery_time, image_local_path, imageurl, name, price, publication_date, ratings, seller_id, verification_status, apparel_id, gender_id, price_id, brand_id) VALUES (4, 0, 0, null, 'https://storage.yandexcloud.net/target-angle-stuff/%D0%91%D0%B8%D1%80%D0%BA%D0%B0.png', 'Бирка', 500, null, 0, 1, false, null, null, null, null);
