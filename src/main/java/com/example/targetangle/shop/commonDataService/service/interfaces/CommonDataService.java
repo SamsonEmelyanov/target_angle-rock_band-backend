@@ -2,6 +2,7 @@ package com.example.targetangle.shop.commonDataService.service.interfaces;
 
 import com.example.targetangle.shop.commonDataService.dto.ProductInfoDTO;
 import com.example.targetangle.shop.commonDataService.entity.sql.info.ProductInfo;
+import com.example.targetangle.shop.commonDataService.entity.sql.info.SongInfo;
 import com.example.targetangle.shop.commonDataService.model.FilterAttributesResponse;
 import com.example.targetangle.shop.commonDataService.model.HomeTabsDataResponse;
 import com.example.targetangle.shop.commonDataService.model.MainScreenResponse;
@@ -25,5 +26,7 @@ public interface CommonDataService {
     SearchSuggestionResponse getSearchSuggestionList();
 
     List <ProductInfo> getAllProduct();
+
+    List<SongInfo> getAllSongs();
 }
 

@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
         web.ignoring().antMatchers("/ws*/**","/chat_message*/**","/home*/**","/products*/**","/menu*/**",
-                "/test*/**","/payment*/**","/scheduleEmail*/**", "/api-docs/v1*/**");
+                "/songs*/**","/test*/**","/payment*/**","/scheduleEmail*/**", "/api-docs/v1*/**");
     }
 
     @Override

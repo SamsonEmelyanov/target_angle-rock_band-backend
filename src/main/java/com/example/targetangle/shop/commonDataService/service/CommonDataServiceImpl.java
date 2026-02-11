@@ -10,6 +10,7 @@ import com.example.targetangle.shop.commonDataService.entity.sql.images.BrandIma
 import com.example.targetangle.shop.commonDataService.entity.sql.images.CarouselImages;
 import com.example.targetangle.shop.commonDataService.entity.sql.images.ApparelImages;
 import com.example.targetangle.shop.commonDataService.entity.sql.info.ProductInfo;
+import com.example.targetangle.shop.commonDataService.entity.sql.info.SongInfo;
 import com.example.targetangle.shop.commonDataService.model.FilterAttributesResponse;
 import com.example.targetangle.shop.commonDataService.model.HomeTabsDataResponse;
 import com.example.targetangle.shop.commonDataService.model.MainScreenResponse;
@@ -51,6 +52,9 @@ public class CommonDataServiceImpl implements CommonDataService {
 
     @Autowired
     private SortByCategoryRepository sortByCategoryRepository;
+
+    @Autowired
+    private SongInfoRepository songInfoRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -142,6 +146,11 @@ public class CommonDataServiceImpl implements CommonDataService {
 
     public List <ProductInfo> getAllProduct(){
         return productInfoRepository.findAll();
+    }
+
+    @Override
+    public List<SongInfo> getAllSongs() {
+        return songInfoRepository.findAll();
     }
 
     public HomeTabsDataResponse getBrandsAndApparelsByGender(String apiName) {

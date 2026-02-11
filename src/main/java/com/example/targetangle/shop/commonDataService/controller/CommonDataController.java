@@ -2,6 +2,7 @@ package com.example.targetangle.shop.commonDataService.controller;
 
 import com.example.targetangle.shop.commonDataService.dto.ProductInfoDTO;
 import com.example.targetangle.shop.commonDataService.entity.sql.info.ProductInfo;
+import com.example.targetangle.shop.commonDataService.entity.sql.info.SongInfo;
 import com.example.targetangle.shop.commonDataService.model.FilterAttributesResponse;
 import com.example.targetangle.shop.commonDataService.model.HomeTabsDataResponse;
 import com.example.targetangle.shop.commonDataService.model.MainScreenResponse;
@@ -38,14 +39,25 @@ public class CommonDataController {
     }
 
     @RequestMapping(value = "/menu", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity getAllProducts() {
+    public ResponseEntity<?> getAllProducts() {
         List<ProductInfo> products = commonDataService.getAllProduct();
 
         if (products.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity(products, HttpStatus.OK);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/songs", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<?> getAllSongs() {
+        List<SongInfo> songs = commonDataService.getAllSongs();
+
+        if (songs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(songs, HttpStatus.OK);
     }
 
     @GetMapping(value = "/products", params = "q")
