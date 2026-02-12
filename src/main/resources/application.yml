@@ -80,4 +80,3 @@ app:
       - myiosapp://oauth2/redirect
 server:
   port: ${SERVER_PORT:8080}
-
