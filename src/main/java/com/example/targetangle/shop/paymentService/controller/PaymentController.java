@@ -1,22 +1,24 @@
 package com.example.targetangle.shop.paymentService.controller;
 
 import com.stripe.Stripe;
-import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import com.stripe.param.ChargeCreateParams;
 import com.example.targetangle.shop.paymentService.dto.CardToken;
 import com.example.targetangle.shop.paymentService.dto.PaymentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.UnknownHostException;
 import java.sql.Timestamp;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class PaymentController {
+
+    @Value("${app.stripe.api-key}")
+    String stripeApiKey;
 
     @Autowired
     private Environment env;
@@ -29,7 +31,7 @@ public class PaymentController {
     @PostMapping("/payment")
     public ResponseEntity<PaymentStatus> chargeCustomer(@RequestBody CardToken cardToken) {
 
-        Stripe.apiKey = "sk_test_51K5H8GIn60CVzGvBBrZ2yXWuO4WHAZUIUptfHcpksVwVRxBnoL6SqRlm53kFByQm9Fwasl8y4IFsTLHQiIFAQhlY00RxQtErl5";
+        Stripe.apiKey = stripeApiKey;
         Stripe.setMaxNetworkRetries(2);
 
         Charge charge;
