@@ -72,6 +72,7 @@ app:
   url: ${API_BASE_URL:http://localhost:8080}
   stripe:
     api-key: ${STRIPE_API_KEY:sk_test_key}
+    name: ${STRIPE_NAME:stripe-name}
   auth:
     tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
     tokenExpirationMsec: 864000000

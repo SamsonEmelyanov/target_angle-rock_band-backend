@@ -20,6 +20,9 @@ public class PaymentController {
     @Value("${app.stripe.api-key}")
     String stripeApiKey;
 
+    @Value("${app.stripe.name}")
+    String stripeName;
+
     @Autowired
     private Environment env;
 
@@ -42,7 +45,7 @@ public class PaymentController {
                     ChargeCreateParams.builder()
                             .setAmount(cardToken.getAmount())
                             .setCurrency(cardToken.getCurrency())
-                            .setDescription("Target-Angle Rock-Band")
+                            .setDescription(stripeName)
                             .setSource(cardToken.getId())
                             .build();
 
