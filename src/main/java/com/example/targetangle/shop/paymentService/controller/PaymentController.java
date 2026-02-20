@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class PaymentController {
 

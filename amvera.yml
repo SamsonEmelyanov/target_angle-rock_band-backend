@@ -2,7 +2,7 @@ meta:
   environment: jvm
   toolchain:
     name: maven
-    version: 11
+    version: 21
 
 build:
   args: spring-boot:repackage
