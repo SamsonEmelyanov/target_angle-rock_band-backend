@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class EmailJobSchedulerController {
     private static final Logger logger = LoggerFactory.getLogger(EmailJobSchedulerController.class);
 
